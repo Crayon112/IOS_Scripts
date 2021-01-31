@@ -1,0 +1,13 @@
+HOST-SUFFIX,acg.tv,Bilibili
+HOST-SUFFIX,acgvideo.com,Bilibili
+HOST-SUFFIX,b23.tv,Bilibili
+HOST-SUFFIX,biliapi.com,Bilibili
+HOST-SUFFIX,biliapi.net,Bilibili
+HOST-SUFFIX,bilibili.com,Bilibili
+HOST-SUFFIX,bilibili.tv,Bilibili
+HOST-SUFFIX,biligame.com,Bilibili
+HOST-SUFFIX,biligame.net,Bilibili
+HOST-SUFFIX,bilivideo.com,Bilibili
+HOST-SUFFIX,hdslb.com,Bilibili
+HOST-SUFFIX,im9.com,Bilibili
+USER-AGENT,*bili*,Bilibili
