@@ -1,0 +1,14 @@
+payload:
+  HOST-SUFFIX,acg.tv
+  HOST-SUFFIX,acgvideo.com
+  HOST-SUFFIX,b23.tv
+  HOST-SUFFIX,biliapi.com
+  HOST-SUFFIX,biliapi.net
+  HOST-SUFFIX,bilibili.com
+  HOST-SUFFIX,bilibili.tv
+  HOST-SUFFIX,biligame.com
+  HOST-SUFFIX,biligame.net
+  HOST-SUFFIX,bilivideo.com
+  HOST-SUFFIX,hdslb.com
+  HOST-SUFFIX,im9.com
+  USER-AGENT,*bili*
