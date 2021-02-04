@@ -1,0 +1,9 @@
+proxies:
+  - {name: US Heroku CrayonProton Raw, type: vmess, server: us-heroku-crayon.herokuapp.com, port: 443, uuid: ad806487-2d26-4636-98b6-ab85cc8521f7, alterId: 64, cipher: auto, tls: true, skip-cert-verify: true, network: ws, ws-path: /, ws-headers: {host: }}
+  - {name: Europe Heroku CrayonProton Raw, type: vmess, server: europe-crayon.herokuapp.com, port: 443, uuid: ad806487-2d26-4636-98b6-ab85cc8521f7, alterId: 64, cipher: auto, tls: true, skip-cert-verify: true, network: ws, ws-path: /, ws-headers: {host: }}
+  - {name: US Heroku CrayonMail Raw, type: vmess, server: us-v2ray-crayon.herokuapp.com, port: 443, uuid: ad806487-2d26-4636-98b6-ab85cc8521f7, alterId: 64, cipher: auto, tls: true, skip-cert-verify: true, network: ws, ws-path: /, ws-headers: {host: }}
+  - {name: Europe Heroku CrayonMail Raw, type: vmess, server: europe-v2ray-crayon.herokuapp.com, port: 443, uuid: ad806487-2d26-4636-98b6-ab85cc8521f7, alterId: 64, cipher: auto, tls: true, skip-cert-verify: true, network: ws, ws-path: /, ws-headers: {host: }}
+  - {name: US Heroku Crayon Raw, type: vmess, server: us-main-crayon.herokuapp.com, port: 443, uuid: ad806487-2d26-4636-98b6-ab85cc8521f7, alterId: 64, cipher: auto, tls: true, skip-cert-verify: true, network: ws, ws-path: /, ws-headers: {host: }}
+  - {name: Europe Heroku Crayon Raw, type: vmess, server: europe-main-crayon.herokuapp.com, port: 443, uuid: ad806487-2d26-4636-98b6-ab85cc8521f7, alterId: 64, cipher: auto, tls: true, skip-cert-verify: true, network: ws, ws-path: /, ws-headers: {host: }}
+  
+  
