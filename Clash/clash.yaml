@@ -1,0 +1,122 @@
+port: 7890
+socks-port: 7891
+allow-lan: true
+mode: Rule
+log-level: info
+external-controller: 127.0.0.1:9090
+
+proxy-providers:
+  LoadBalance:
+    type: http
+    path: ./load_balance.yaml
+    url:  https://raw.githubusercontent.com/Crayon112/IOS_Scripts/main/Clash/Proxy/load_balance.yaml
+    interval: 3600
+    health-check:
+      enable: true
+      url: http://www.gstatic.com/generate_204
+      interval: 300
+
+rule-providers:
+  GoogleRule:
+    type: http
+    path: ./Google.yaml
+    url:  https://raw.githubusercontent.com/Crayon112/IOS_Scripts/main/Clash/Rules/Google.yaml
+    interval: 300
+  BahamutRule:
+    type: http
+    path: ./Bahamut.yaml
+    url:  https://raw.githubusercontent.com/Crayon112/IOS_Scripts/main/Clash/Rules/Bahamut.yaml
+    interval: 300
+  BilibiliRule:
+    type: http
+    path: ./Bilibili.yaml
+    url:  https://raw.githubusercontent.com/Crayon112/IOS_Scripts/main/Clash/Rules/Bilibili.yaml
+    interval: 300
+  YoutubeRule:
+    type: http
+    path: ./Youtube.yaml
+    url:  https://raw.githubusercontent.com/Crayon112/IOS_Scripts/main/Clash/Rules/Youtube.yaml
+    interval: 300
+  DiscordRule:
+    type: http
+    path: ./Discord.yaml
+    url:  https://raw.githubusercontent.com/Crayon112/IOS_Scripts/main/Clash/Rules/Discord.yaml
+    interval: 300
+  GithubRule:
+    type: http
+    path: ./Github.yaml
+    url:  https://raw.githubusercontent.com/Crayon112/IOS_Scripts/main/Clash/Rules/Github.yaml
+    interval: 300
+  NeteasemusicRule:
+    type: http
+    path: ./Neteasemusic.yaml
+    url:  https://raw.githubusercontent.com/Crayon112/IOS_Scripts/main/Clash/Rules/Neteasemusic.yaml
+    interval: 300
+  TelegramRule:
+    type: http
+    path: ./Telegram.yaml
+    url:  https://raw.githubusercontent.com/Crayon112/IOS_Scripts/main/Clash/Rules/Telegram.yaml
+    interval: 300
+  BlockRule:
+    type: http
+    path: ./Block.yaml
+    url:  https://raw.githubusercontent.com/Crayon112/IOS_Scripts/main/Clash/Rules/Block.yaml
+    interval: 300
+
+  
+  proxy-groups:
+    - name: Proxy
+      type: select
+      proxies:
+        - Auto
+        - FallBack
+        - Select
+        - RoundBin
+        - DIRECT
+    - name: Auto
+      type: url-test
+      url: http://www.gstatic.com/generate_204
+      interval: 300
+      tolerance: 50
+      proxies:
+        - LoadBalance
+    - name: Selcect
+      type: select
+      proxies:
+        - LoadBalance
+      proxy-groups:
+    - name: RoundBin
+      type: load-balance
+      proxies:
+        - LoadBalance
+      url: 'http://www.gstatic.com/generate_204'
+      interval: 300
+      proxy-groups:
+    - name: FallBack
+      type: fallback
+      proxies:
+        - LoadBalance
+      url: 'http://www.gstatic.com/generate_204'
+      interval: 300
+    - name: Neteasemusic
+      type: select
+      proxies:
+        - Netease
+        - DIRECT
+    - name: Netease
+      type: ss
+      server: music.desperadoj.com
+      port: 30001
+      cipher: aes-128-gcm
+      password: desperadoj.com_free_proxy_emx2
+   
+  rules:
+    RULESET, GoogleRule, Proxy
+    RULESET, YoutubeRule, Proxy
+    RULESET, TelegramRule, Proxy
+    RULESET, DiscordRule, Proxy
+    RULESET, GithubRule, Proxy
+    RULESET, BahamutRule, Proxy
+    RULESET, BilibiliRule, Proxy
+    RULESET, NeteasemusicRule, Netease
+    RULESET, BlockRule, REJECT
