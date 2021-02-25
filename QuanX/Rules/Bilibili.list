@@ -1,13 +1,4 @@
-HOST-SUFFIX,acg.tv
-HOST-SUFFIX,acgvideo.com
-HOST-SUFFIX,b23.tv
-HOST-SUFFIX,biliapi.com
-HOST-SUFFIX,biliapi.net
-HOST-SUFFIX,bilibili.com
-HOST-SUFFIX,bilibili.tv
-HOST-SUFFIX,biligame.com
-HOST-SUFFIX,biligame.net
-HOST-SUFFIX,bilivideo.com
-HOST-SUFFIX,hdslb.com
-HOST-SUFFIX,im9.com
-USER-AGENT,*bili*
+DOMAIN-SUFFIX,biliapi.net,Bilibili
+DOMAIN-SUFFIX,bilibili.com,Bilibili
+DOMAIN,upos-hz-mirrorakam.akamaized.net,Bilibili
+DOMAIN-KEYWORD,cn-hk-eq-bcache-,Bilibili
