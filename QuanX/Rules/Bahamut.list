@@ -1,5 +1,5 @@
-HOST,gamer-cds.cdn.hinet.net
-HOST,gamer2-cds.cdn.hinet.net
-HOST-SUFFIX,bahamut.com.tw
-HOST-SUFFIX,gamer.com.tw
-USER-AGENT,anime*
+USER-AGENT,Anime*,Bahamut
+DOMAIN-SUFFIX,bahamut.com.tw,Bahamut
+DOMAIN-SUFFIX,gamer.com.tw,Bahamut
+DOMAIN,gamer-cds.cdn.hinet.net,Bahamut
+DOMAIN,gamer2-cds.cdn.hinet.net,Bahamut
