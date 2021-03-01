@@ -42,11 +42,6 @@ let repositories = [
 
 const $ = API("github", false);
 
-token = $.read('token') || token;
-if ($.read("repo") !== undefined) {
-    repositories = JSON.parse($.read("repo"));
-}
-
 const parser = {
     commits: new RegExp(
         /^https:\/\/github.com\/([\w|-]+)\/([\w|-]+)(\/tree\/([\w|-]+))?$/
