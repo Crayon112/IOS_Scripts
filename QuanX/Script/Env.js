@@ -1,3 +1,6 @@
+$ = new Env("Crayon");
+
+
 /**
  * EnvJs
  */
