@@ -22,6 +22,7 @@ def read_gallery(path):
         lines = [line if line.find('config') != -1 else "" for line in lines]
         lines = list(set(lines))
         lines.remove("")
+        lines.sort()
         return lines
 
 if __name__ == "__main__":
