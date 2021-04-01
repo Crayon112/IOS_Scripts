@@ -43,10 +43,7 @@ var obj = JSON.parse(body);
 var date = new Date();
 
 function format(p){
-  if (p < 10){
-    return '0' + p;
-  }
-  return p;
+  return p > 10 ? '' + p: '0' + p;
 }
 
 var year = date.getFullYear();
