@@ -44,8 +44,8 @@ var date = new Date();
 var time = date.getFullYear()+"-"+date.getMonth()+"-"+date.getDate()+" "+date.getHours()+":"+date.getMinutes()+":"+date.getSeconds();
 var emoji =  emojis[getRandomInt(emojis.length)]
 
-var title =flags.get(obj['countryCode']) + ' '+ City_ValidCheck(obj['city']) + emoji + '\n' + time;
+var title =flags.get(obj['countryCode']) + ' '+ City_ValidCheck(obj['city']) + emoji + ' ' + time;
 var subtitle = ISP_ValidCheck(obj['org']);
 var ip = obj['query'];
-var description = '服务商:'+obj['isp'] + '\n'+'地区:' +City_ValidCheck(obj['regionName'])+  + emoji + '\n' + 'IP:'+ obj['query'] + '\n' +'时区:'+ obj['timezone'];
+var description = '服务商:'+obj['isp'] + '\n'+'地区:' +City_ValidCheck(obj['regionName']) + '\n' + 'IP:'+ obj['query'] + '\n' +'时区:'+ obj['timezone'];
 $done({title, subtitle, ip, description});
