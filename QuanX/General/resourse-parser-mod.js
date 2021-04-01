@@ -2681,5 +2681,5 @@ function Order(number){
   if (number < 10){
       return emojino[number];
   }
-  return Order(Math.floor(number/10))) + (number % 10)
+  return Order(Math.floor(number/10)) + (number % 10)
 }
