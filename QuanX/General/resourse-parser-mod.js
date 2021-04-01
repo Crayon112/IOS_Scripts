@@ -442,9 +442,7 @@ function TagCheck_QX(content) {
                 item = Pdel == 0 ? item.split("tag")[0] + "tag=" + nm : ""
                 ni = ni + 1
             }
-            if (ni != 0) {
-		    duplist.push(nm)
-	    }
+            if (ni != 0) {duplist.push(nm)}
             nmlist.push(nm)
           if (Pcap) { 
             item = Capitalize(item,Pcap)
