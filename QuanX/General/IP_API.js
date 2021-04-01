@@ -49,7 +49,7 @@ function format(p){
   return p;
 }
 
-var year = date.getFullYear()；
+var year = date.getFullYear();
 var month = format(date.getMonth());
 var day = format(date.getDate());
 var hour = format(date.getHours());
