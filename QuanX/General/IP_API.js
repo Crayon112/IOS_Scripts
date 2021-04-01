@@ -11,7 +11,7 @@ function getRandomInt(max) {
 }
 
 function City_ValidCheck(para) {
-  para!=undefined? para: city0;
+  return para!=undefined? para: city0;
 }
 
 function ISP_ValidCheck(para) {
