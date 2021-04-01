@@ -1,4 +1,4 @@
-host-keyword,speed,proxy
-DOMAIN-SUFFIX,speedtest.net,proxy
-DOMAIN-SUFFIX,netspeedtestmaster.com,proxy
-DOMAIN,speedtest.macpaw.com,proxy
+host-keyword,speed,Speedtest
+DOMAIN-SUFFIX,speedtest.net,Speedtest
+DOMAIN-SUFFIX,netspeedtestmaster.com,Speedtest
+DOMAIN,speedtest.macpaw.com,Speedtest
