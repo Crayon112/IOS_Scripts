@@ -25,6 +25,6 @@ def read_gallery(path):
         return lines
 
 if __name__ == "__main__":
-    path = 'D:\\gallery.json'
+    path = '.\gallery.json'
     gallery = read_gallery(path)
     write(gallery, path)
