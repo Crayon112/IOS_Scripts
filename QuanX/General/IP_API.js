@@ -33,7 +33,7 @@ function format(p){
 }
 
 var year = date.getFullYear();
-var month = format(date.getMonth());
+var month = format(date.getMonth()+1);
 var day = format(date.getDate());
 var hour = format(date.getHours());
 var minute = format(date.getMinutes());
