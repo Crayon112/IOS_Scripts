@@ -438,7 +438,7 @@ function TagCheck_QX(content) {
             }
             var ni = 0
             while (nmlist.indexOf(nm) != -1) { //重名情形
-                nm = nm.split(" ⌘")[0] + Order(ni+1)
+                nm = nm.split(" 里")[0] + '里' + Order(ni+1)
                 item = Pdel == 0 ? item.split("tag")[0] + "tag=" + nm : ""
                 ni = ni + 1
             }
