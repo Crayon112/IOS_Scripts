@@ -59,9 +59,6 @@
 			"config": "4 0 * * * https://raw.githubusercontent.com/chavyleung/scripts/master/neteasemusic/quanx/neteasemusic.js, tag=网易云音乐, img-url=https://raw.githubusercontent.com/Orz-3/task/master/Netease.png,enabled=true",
 		},
 		{
-			"config": "3 0 * * * hhttps://raw.githubusercontent.com/Crayon112/IOS_Scripts/main/QuanX/Tasks/bilibiliSilver2Coin.js, tag=bilibili银瓜子转硬币, img-url=https://raw.githubusercontent.com/Orz-3/task/master/bilibili.png,enabled=true",
-		},
-		{
 			"config": "0 1,18 * * * https://raw.githubusercontent.com/whyour/hundun/master/quanx/jx_factory_component.js, tag=京喜工厂plus , img-url=https://raw.githubusercontent.com/ChuheGit/1/main/QuantumultX/Gallery/API-Icon/jx_factory_component.png",
 		},
 		{
@@ -258,9 +255,6 @@
 		},
 		{
 			"config": "10 9 * * * https://raw.githubusercontent.com/Sunert/Scripts/master/Task/kuaishou.js, tag=快手极速版 , img-url=https://raw.githubusercontent.com/ChuheGit/1/main/QuantumultX/Gallery/API-Icon/kuaishou.png",
-		},
-		{
-			"config": "2 0 * * * https://raw.githubusercontent.com/Crayon112/IOS_Scripts/main/QuanX/Tasks/bilibiliSign.js, tag=bilibili签到, img-url=https://raw.githubusercontent.com/Orz-3/task/master/bilibili.png,enabled=true",
 		},
 		{
 			"config": "5 0 * * * https://raw.githubusercontent.com/NobyDa/Script/master/JD-DailyBonus/JD_DailyBonus.js, tag=京东 , img-url=https://raw.githubusercontent.com/ChuheGit/1/main/QuantumultX/Gallery/API-Icon/JD_DailyBonus.png",
