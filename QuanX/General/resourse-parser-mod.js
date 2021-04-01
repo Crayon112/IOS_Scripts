@@ -437,6 +437,7 @@ function TagCheck_QX(content) {
                 nulllist.push(nm.replace("shadowsocks", "ss"))
             }
             var ni = 0
+	    nm = nm.split("🚦")[0] + '🚦' + Order(ni)
             while (nmlist.indexOf(nm) != -1) { //重名情形
                 nm = nm.split("🚦")[0] + '🚦' + Order(ni+1)
                 item = Pdel == 0 ? item.split("tag")[0] + "tag=" + nm : ""
