@@ -443,7 +443,6 @@ function TagCheck_QX(content) {
                 ni = ni + 1
             }
             if (ni != 0) {
-		    nm =  nm.split("🚦")[0] + '🚦' + Order(0)
 		    duplist.push(nm)
 	    }
             nmlist.push(nm)
