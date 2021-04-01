@@ -43,8 +43,8 @@ var second = format(date.getSeconds());
 var time = year+"-"+month+"-"+day+" "+hour+":"+minute+":"+second;
 var emoji =  emojis[getRandomInt(emojis.length)]
 
-var title =flags.get(obj['countryCode']) + ' '+ City_ValidCheck(obj['city']) + emoji + ' ' + time;
+var title =flags.get(obj['countryCode']) + ' '+ City_ValidCheck(obj['city']) + ' ' +  time + emoji;
 var subtitle = ISP_ValidCheck(obj['org']);
 var ip = obj['query'];
-var description = '服务商:'+obj['isp'] + '\n'+'地区:' +City_ValidCheck(obj['regionName']) + '\n' + 'IP:'+ obj['query'] + '\n' +'时区:'+ obj['timezone'];
+var description = '服务商:'+obj['isp'] + '\n'+'地区:' +City_ValidCheck(obj['regionName']) + '\n' + 'IP:'+ obj['query'] + '\n' +'时区:'+ obj['timezone'] + '\n时间:' + time;
 $done({title, subtitle, ip, description});
