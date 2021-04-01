@@ -41,7 +41,23 @@ var body = $response.body;
 var obj = JSON.parse(body);
 // 获取时间
 var date = new Date();
-var time = date.getFullYear()+"-"+date.getMonth()+"-"+date.getDate()+" "+date.getHours()+":"+date.getMinutes()+":"+date.getSeconds();
+
+function format(p){
+  if (p < 10){
+    return '0' + p;
+  }
+  return p;
+}
+
+var year = date.getFullYear()；
+var month = format(date.getMonth());
+var day = format(date.getDate());
+var hour = format(date.getHours());
+var minute = format(date.getMinutes());
+var second = format(date.getSeconds());
+
+
+var time = year+"-"+month+"-"+day+" "+hour+":"+minute+":"+second;
 var emoji =  emojis[getRandomInt(emojis.length)]
 
 var title =flags.get(obj['countryCode']) + ' '+ City_ValidCheck(obj['city']) + emoji + '\r\n' + time;
