@@ -6,12 +6,3 @@ ctier=[A-Z] url 302 ctier=A
 
 # 谷歌重定向
 ^(http|https):\/\/(www.)?(g|google)\.cn url 302 https://www.google.com
-
-# 京喜财富岛
-^https\:\/\/wq\.jd\.com\/cubeactive\/farm\/dotask url script-request-header https://raw.githubusercontent.com/whyour/hundun/master/quanx/jx_tokens.js
-^https\:\/\/m\.jingxi\.com\/dreamfactory\/generator\/CollectCurrentElectricity url script-request-header https://raw.githubusercontent.com/whyour/hundun/master/quanx/jx_tokens.js
-^https\:\/\/m\.jingxi\.com\/jxcfd\/consume\/CashOut url script-request-header https://raw.githubusercontent.com/whyour/hundun/master/quanx/jx_tokens.js
-
-# 京东合集
-https:\/\/api\.m\.jd\.com\/client\.action.*functionId=signBean url script-request-header https://raw.githubusercontent.com/Crayon112/IOS_Scripts/main/QuanX/Tasks/jd_sign.js
-
