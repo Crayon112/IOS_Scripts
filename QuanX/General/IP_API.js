@@ -11,11 +11,11 @@ function getRandomInt(max) {
 }
 
 function City_ValidCheck(para) {
-  para? para: city0;
+  para!=undefined? para: city0;
 }
 
 function ISP_ValidCheck(para) {
-  return para? para: isp0;
+  return para!=undefined? para: isp0;
 }
 
 function Area_check(para) {
