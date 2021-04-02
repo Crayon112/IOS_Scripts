@@ -275,22 +275,22 @@
 			"config": "00 9 * * * https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/script/didichuxing/didi_checkin.js, tag=滴滴出行, enabled=true"
 		},
 		{
-			"config": "00 9 * * * https://raw.githubusercontent.com/Crayon112/CrossUtiliyiTools/QuanX/Tasks/exchange.js, tag=汇率转换, enabled=true"
+			"config": "00 9 * * * https://raw.githubusercontent.com/Crayon112/CrossUtilityTools/main/QuanX/Tasks/exchange.js, tag=汇率转换, enabled=true"
 		},
 		{
-			"config": "00 9 * * * https://raw.githubusercontent.com//Crayon112/CrossUtiliyiTools/QuanX/Tasks/flow.js, tag=机场流量, enabled=true"
+			"config": "00 9 * * * https://raw.githubusercontent.com/Crayon112/CrossUtilityTools/main/QuanX/Tasks//flow.js, tag=机场流量, enabled=true"
 		},
 		{
-			"config": "00 9 * * * https://raw.githubusercontent.com/Crayon112/CrossUtiliyiTools/QuanX/Tasks/github.js, tag=Github监控, enabled=true"
+			"config": "00 9 * * * https://raw.githubusercontent.com/Crayon112/CrossUtilityTools/main/QuanX/Tasks/github.js, tag=Github监控, enabled=true"
 		},
 		{
-			"config": "00 9 * * * https://raw.githubusercontent.com/Crayon112/CrossUtiliyiTools/QuanX/Tasks/telegram.js, tag=电报监控, enabled=true"
+			"config": "00 9 * * * https://raw.githubusercontent.com/Crayon112/CrossUtilityTools/main/QuanX/Tasks/telegram.js, tag=电报监控, enabled=true"
 		},
 		{
-			"config": "00 9 * * * https://raw.githubusercontent.com/Crayon112/CrossUtiliyiTools/QuanX/Tasks/zongheng.js, tag=纵横小说, enabled=true"
+			"config": "00 9 * * * https://raw.githubusercontent.com/Crayon112/CrossUtilityTools/main/QuanX/Tasks/zongheng.js, tag=纵横小说, enabled=true"
 		},
 		{
-			"config": "00 9 * * * https://raw.githubusercontent.com/Crayon112/CrossUtiliyiTools/QuanX/Tasks/boxjs_white.js, tag=BOXJS白屏, enabled=true"
+			"config": "00 9 * * * https://raw.githubusercontent.com/Crayon112/CrossUtilityTools/main/QuanX/Tasks/boxjs_white.js, tag=BOXJS白屏, enabled=false"
 		},
 		{
 			"config": "00 9 * * * https://raw.githubusercontent.com/Crayon112/CrossUtiliyiTools/QuanX/Tasks/jd_sign.js, tag=京东多合一, enabled=true"
