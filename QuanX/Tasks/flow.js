@@ -9,12 +9,12 @@
 
 let subscriptions = [
     {
-        link: "http://dy.paoche.cf/api/v1/client/subscribe?token=95417b19b14ba91000dcc60fe120aa1b",
+        link: "",
         name: "超级跑车",
         icon: "https://raw.githubusercontent.com/Orz-3/mini/master/pudding.png"
     },
     {
-        link: "https://fast.losadhwselfff2332dasd.xyz/link/9IUXxRXlVB6IGgk4?sub=1",
+        link: "",
         name: "超级苏",
         icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Nexitally.png"
     },
