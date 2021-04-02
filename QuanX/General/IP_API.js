@@ -34,7 +34,7 @@ if ($response.statusCode != 200) {
 	var title = flags.get('CN') + ' ' + city0 + emoji;
 	var subtitle = isp0 + '@' + time;
 	var ip = '192.168.1.1';
-	var description = '时间：' + time;
+	var description = '无效节点';
 	$done({title, subtitle, ip, description});
 }else{
 	function City_ValidCheck(para) {
