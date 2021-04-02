@@ -1,5 +1,7 @@
 host-keyword,speed,Speedtest
-host-keyword, test.com, Speedtest
+host-keyword,test.com,Speedtest
+host,ltetest1.139site.com,Speedtest
+host,ltetest3.139site.com,Speedtest
 DOMAIN-SUFFIX,speedtest.net,Speedtest
 DOMAIN-SUFFIX,netspeedtestmaster.com,Speedtest
 DOMAIN,speedtest.macpaw.com,Speedtest
