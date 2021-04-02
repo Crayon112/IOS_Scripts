@@ -1,10 +1,6 @@
 /** 
-☑️ 资源解析器 ©𝐒𝐡𝐚𝐰𝐧  ⟦2021-03-31 12:20⟧
+☑️ 资源解析器  ⟦2021-03-31 12:20⟧
 ----------------------------------------------------------
-🛠 发现 𝐁𝐔𝐆 请反馈: @Shawn_KOP_bot
-⛳️ 关注 🆃🅶 相关频道: https://t.me/QuanX_API
-🗣 🆃🄷🄰🄽🄺🅂 🆃🄾  @Jamie CHIEN, @M**F**, @c0lada, @Peng-YM
-
 🤖 主要功能: 
 ❶ 将其它格式的服务器订阅解析成 𝐐𝐮𝐚𝐧𝐭𝐮𝐦𝐮𝐥𝐭 𝐗 格式
 ☑︎ 支持 𝗩𝗺𝗲𝘀𝘀/𝗦𝗦(𝗥/𝗗)/𝗛𝗧𝗧𝗣(𝗦)/𝗧𝗿𝗼𝗷𝗮𝗻/𝗤𝘂𝗮𝗻𝘁𝘂𝗺𝘂𝗹𝘁(𝗫)/𝗦𝘂𝗿𝗴𝗲/𝐂𝐥𝐚𝐬𝐡/𝐒𝐡𝐚𝐝𝐨𝐰𝐫𝐨𝐜𝐤𝐞𝐭/𝐋𝐨𝐨𝐧 格式
@@ -59,7 +55,7 @@
 ⦿ regex, 正则筛选, 请自行折腾正则表达式;
   ❖ 可与 in(hn)/out(hn) 一起使用，in(hn)/out(hn) 会优先执行;
   ❖ 对 𝒉𝒐𝒔𝒕𝒏𝒂𝒎𝒆 & 𝐫𝐞𝐰𝐫𝐢𝐭𝐞/𝐟𝐢𝐥𝐭𝐞𝐫 同时生效(⚠️ 慎用)
-⦿ policy 参数, 用于直接指定策略组，或为 𝐒𝐮𝐫𝐠𝐞 类型 𝗿𝘂𝗹𝗲-𝘀𝗲𝘁 生成策略组(默认"𝐒𝐡𝐚𝐰𝐧"策略组);
+⦿ policy 参数, 用于直接指定策略组，或为 𝐒𝐮𝐫𝐠𝐞 类型 𝗿𝘂𝗹𝗲-𝘀𝗲𝘁 生成策略组(默认"Crayon"策略组);
 ⦿ replace 参数, 正则替换 𝐟𝐢𝐥𝐭𝐞𝐫/𝐫𝐞𝐰𝐫𝐢𝐭𝐞 内容, regex@newregex;
   ❖ 将淘宝比价中脚本替换成 lite 版本, tiktok 中 JP 换成 KR
     ∎ replace=(price)(.*)@$1_lite$2+jp@kr 
@@ -78,6 +74,8 @@
 ⦿ 隐藏参数 hide=1, 隐藏筛除的分流/重写，默认方式为禁用
 ----------------------------------------------------------
 */
+
+// 源自@Shawn, @Crayon112私人使用，其余使用者自身承担一切责任
 
 
 /**
@@ -141,7 +139,7 @@ var Prname = mark0 && para1.indexOf("rename=") != -1 ? para1.split("rename=")[1]
 var Psrename = mark0 && para1.indexOf("srename=") != -1 ? Base64.decode(para1.split("srename=")[1].split("&")[0]) : null; // script rename
 var Prrname = mark0 && para1.indexOf("rrname=") != -1 ? para1.split("rrname=")[1].split("&")[0].split("+") : null;
 var Psuffix = mark0 && para1.indexOf("suffix=") != -1 ? para1.split("suffix=")[1].split("&")[0] : 0;
-var Ppolicy = mark0 && para1.indexOf("policy=") != -1 ? decodeURIComponent(para1.split("policy=")[1].split("&")[0]) : "Shawn";
+var Ppolicy = mark0 && para1.indexOf("policy=") != -1 ? decodeURIComponent(para1.split("policy=")[1].split("&")[0]) : "Crayon112";
 var Pcert0 = mark0 && para1.indexOf("cert=") != -1 ? para1.split("cert=")[1].split("&")[0] : 0;
 var Psort0 = mark0 && para1.indexOf("sort=") != -1 ? para1.split("sort=")[1].split("&")[0] : 0;
 var PsortX = mark0 && para1.indexOf("sortx=") != -1 ? para1.split("sortx=")[1].split("&")[0] : 0;
@@ -195,7 +193,6 @@ if (typeof($resource)!=="undefined") {
   $done({ content: total })
 }
 
-
 /**
 # 以下为具体的 function
 
@@ -212,8 +209,6 @@ function ParseUnkown(cnt){
     $notify("😭 未能识别该订阅格式：  " + "⟦" + subtag + "⟧",  "⚠️ 将直接导入Quantumult X \n 如认为是 BUG, 请点通知跳转反馈", "链接返回内容:\n"+cnt, bug_link);
   }
 }
-
-
 
 function ResourceParse() {
   //预处理，分流/重写等处理完成
@@ -473,7 +468,6 @@ function TagCheck_QX(content) {
     return Nlist
 }
 
-
 function PatternN(cnt, para) {
   for (var i=0;i<26;i++) {
     cnt = cnt.toLowerCase()
@@ -489,7 +483,6 @@ function Pattern(cnt,para) {
   }
   return cnt 
 }
-
 
 //大小写
 function Capitalize(cnt,para) {
@@ -509,7 +502,6 @@ function titleCase(str) {
     newStr[i] = newStr[i].slice(0,1).toUpperCase() + newStr[i].slice(1).toLowerCase();
   }    return newStr.join(" ");
 }
-
 
 // 类型前缀/后缀
 function type_prefix(item) {
@@ -695,6 +687,7 @@ function SCP2QX(subs) {
   }
   return nrw
 }
+
 // 如果 URL-Regex 跟 rewrite/script 都需要
 function SGMD2QX(subs) {
     var nrw0 = URX2QX(subs)
@@ -1465,8 +1458,6 @@ function isQuanXRewrite(content) {
   return cnt0
 }
 
-
-
 //根据节点名排序(不含emoji 部分)
 function QXSort(content, para) {
     var nlist = content;//.split("\n");
@@ -1546,7 +1537,6 @@ function MixArr(cnt,dir){
   cnt0 = dir ==1? cnt0.concat(cnt[cnt.length-1].sort(ToTag)):(cnt[cnt.length-1].sort(ToTagR)).concat(cnt0)
   return cnt0
 }
-
 
 //正则删除节点名内的字符
 function DelReg(content) {
@@ -1694,7 +1684,6 @@ function Surge2QX(conf) {
   return (Nlist)
 }
 
-
 // surge2 中的 SS 类型写法(custom)
 //🇷🇺 俄罗斯 GIA = custom, ip, 152, aes-128-gcm, password123, https://xxx/download/SSEncrypt.module, obfs=tls, obfs-host=xxx.windows.com, udp-relay=true
 function SCT2QX(content) {
@@ -1715,7 +1704,6 @@ function SCT2QX(content) {
     var nserver = pobfs != "" ? "shadowsocks= " + [ipport, pmtd, pwd, pobfs, ptfo, pudp, tag].join(", ") : "shadowsocks= " + [ipport, pmtd, pwd, ptfo, pudp, tag].join(", ");
     return nserver
 }
-
 
 // surge3 中的 SS 类型
 function SSS2QX(content) {
@@ -1777,6 +1765,7 @@ function isSurge(content) {
     }
   }
 }
+
 // 用于参数检查
 function paraCheck(content, para) {
   content=content.replace(/ /g,"")
@@ -1787,6 +1776,7 @@ function paraCheck(content, para) {
     return content.split(para+"=")[1].split(",")[0].trim()
   }
 }
+
 //surge中 trojan 类型转换
 function Strojan2QX(content) {
   var cnt = content;
@@ -1801,6 +1791,7 @@ function Strojan2QX(content) {
   var nserver = "trojan= " + [ipport, pwd, ptls, ptfo, ptls13, pverify, tag].join(", ");
   return nserver
 }
+
 // surge 中的 http 类型
 function Shttp2QX(content) {
   var cnt = content;
@@ -1830,6 +1821,7 @@ function Loon2QX(cnt) {
   }
   return node
 }
+
 //Loon 的 ss 部分
 function LoonSS2QX(cnt) {
   var node = "shadowsocks="
@@ -1858,7 +1850,6 @@ function LoonSSR2QX(cnt) {
   node = node + [ip, mtd, pwd, ssrp, ssrpara, obfs, obfshost].join(", ") + tag
   return node
 }
-
 
 // fix yaml parse mistakes
 function YAMLFix(cnt){
@@ -2188,7 +2179,6 @@ function Base64Code() {
         ).replace(/&gt;/g, ">").replace(/&lt;/g, "<");
     };
 }
-
 
 /*
 YAML parser for Javascript
@@ -2624,7 +2614,6 @@ function YAML() {
 
 };
 
-
 /***********************************************************************************************/
 function Tools() {
     const filter = (src, ...regex) => {
@@ -2674,7 +2663,6 @@ function OR(...args) {
 function NOT(array) {
     return array.map(c => !c);
 }
-
 
 // ==================== RenameNumber =================
 function NumberNotify(number){
