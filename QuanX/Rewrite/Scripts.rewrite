@@ -1,4 +1,4 @@
-hostname = *.googlevideo.com
+hostname = *.googlevideo.com, weather-data.apple.com, api.weather.com
 
 #新版YouTube去广告
 ctier=[A-Z] url 302 ctier=A
@@ -6,3 +6,6 @@ ctier=[A-Z] url 302 ctier=A
 
 # 谷歌重定向
 ^(http|https):\/\/(www.)?(g|google)\.cn url 302 https://www.google.com
+
+# 彩云天气
+https:\/\/((weather-data\.apple)|(api.weather))\.com url script-request-header https://raw.githubusercontent.com/Peng-YM/QuanX/master/Tasks/caiyun.js
