@@ -353,7 +353,7 @@ function RegCheck(total, typen, regpara) {
 	if(total.length == 0){ 
 		$notify("‼️ " + typen + "  ➟ " + "⟦" + subtag + "⟧", "⛔️ 筛选正则: regex=" + regpara, "⚠️ 筛选后剩余项为 0️⃣ , 请检查正则参数及原始链接", nan_link)
 	}else if((typen != "节点订阅" && Pntf0 !=0) || (typen == "节点订阅" && Pntf0 ==1)){
-		var nolist = total.length <= 10 ? emojino[total.length] : total.length
+		var nolist = NumberNotify(total.length);
 		$notify("🤖 " + typen + "  ➟ " + "⟦" + subtag + "⟧", "⛔️ 筛选正则: regex=" + regpara, "⚠️ 筛选后剩余以下" + nolist + "个匹配项 \n ⨷ " + total.join("\n ⨷ "), sub_link)
 	}
 }
@@ -438,7 +438,7 @@ function TagCheck_QX(content) {
             }
             var ni = 0
             while (nmlist.indexOf(nm) != -1) { //重名情形
-                nm = nm.split("🚦")[0] + '🚦' + Order(ni+1)
+                nm = nm.split("🚦")[0] + '🚦' + NumberNotify(ni+1)
                 item = Pdel == 0 ? item.split("tag")[0] + "tag=" + nm : ""
                 ni = ni + 1
             }
@@ -459,11 +459,11 @@ function TagCheck_QX(content) {
         }// if "tag="
     } // for
     if (nulllist.length >= 1) {
-        no = nulllist.length <= 10 ? emojino[nulllist.length] : nulllist.length;
+        no = NumberNotify(nulllist.length);
         $notify("⚠️ 引用" + "⟦" + subtag + "⟧" + " 内有" + no + "个空节点名 ", "✅ 已将节点“类型+IP”设为节点名", " ⨁ " + nulllist.join("\n ⨁ "), nan_link)
     }
     if (duplist.length >= 1) {
-        no = duplist.length <= 10 ? emojino[duplist.length] : duplist.length;
+        no = NumberNotify(duplist.length);
       if (Pdel==0){
         $notify("⚠️ 引用" + "⟦" + subtag + "⟧" + " 内有" + no + "个名字重复的节点 ", "✅ 已添加⌘符号作为区分:", " ⨁ " + duplist.join("\n ⨁ "), nan_link)
       } else {
@@ -733,8 +733,8 @@ function Rewrite_Filter(subs, Pin, Pout,Preg) {
         }
     }
     if (Pntf0 != 0) {
-        nowrite = dwrite.length <= 10 ? emojino[dwrite.length] : dwrite.length
-        no1write = Nlist.length <= 10 ? emojino[Nlist.length] : Nlist.length
+        nowrite = NumberNotify(dwrite.length);
+        no1write = NumberNotify(Nlist.length);
         if (Pin0 && no1write != " 0️⃣ ") { //有 in 参数就通知保留项目
             $notify("🤖 " + "重写引用  ➟ " + "⟦" + subtag + "⟧", "⛔️ 筛选参数: " + pfi + pfo, "☠️ 重写 rewrite 中保留以下" + no1write + "个匹配项:" + "\n ⨷ " + Nlist.join("\n ⨷ "), rwrite_link)
         } else if (dwrite.length > 0) {
@@ -777,8 +777,8 @@ function HostNamecheck(content, parain, paraout) {
     } //for j
     if (Pntf0 != 0) {
         if (paraout || parain) {
-            var noname = dname.length <= 10 ? emojino[dname.length] : dname.length
-            var no1name = nname.length <= 10 ? emojino[nname.length] : nname.length
+            var noname = NumberNotify(dname.length);
+            var no1name = NumberNotify(nname.length);
             if (parain && no1name != " 0️⃣ ") {
                 $notify("🤖 " + "重写引用  ➟ " + "⟦" + subtag + "⟧", "⛔️ 筛选参数: " + pfihn + pfohn, "☠️ 主机名 hostname 中已保留以下" + no1name + "个匹配项:" + "\n ⨷ " + nname.join(","), rwhost_link)
             } else if (dname.length > 0) {
@@ -839,13 +839,13 @@ function Rule_Handle(subs, Pout, Pin) {
                 }
             } //else if cc
         }//for cnt
-        var no = dlist.length <= 10 ? emojino[dlist.length] : dlist.length
+        var no = NumberNotify(dlist.length);
         if (dlist.length > 0) {
             if (Pntf0 != 0) { $notify("🤖 " + "分流引用  ➟ " + "⟦" + subtag + "⟧", "⛔️ 禁用: " + Tout, "☠️ 已禁用以下" + no + "条匹配规则:" + "\n ⨷ " + dlist.join("\n ⨷ "), rule_link) }
         } else { $notify("🤖 " + "分流引用  ➟ " + "⟦" + subtag + "⟧", "⛔️ 禁用: " + Tout, "⚠️ 未发现任何匹配项, 请检查参数或原始链接", nan_link) }
         if (Tin != "" && Tin != null) {  //有 in 跟 out 参数时
             if (nlist.length > 0) {
-                var noin0 = nlist.length <= 10 ? emojino[nlist.length] : nlist.length
+                var noin0 = NumberNotify(nlist.length);
                 if (Pntf0 != 0) {
                     $notify("🤖 " + "分流引用  ➟ " + "⟦" + subtag + "⟧", "✅ 保留:" + Tin, "🎯 已保留以下 " + noin0 + "条匹配规则:" + "\n ⨁ " + nlist.join("\n ⨁ "), rule_link)
                 }
@@ -873,7 +873,7 @@ function Rule_Handle(subs, Pout, Pin) {
             }
         } // for cnt
         if (nlist.length > 0) {
-            var noin = nlist.length <= 10 ? emojino[nlist.length] : nlist.length
+            var noin = NumberNotify(nlist.length);
             if (Pntf0 != 0) {
                 $notify("🤖 " + "分流引用  ➟ " + "⟦" + subtag + "⟧", "✅ 保留:" + Tin, "🎯 已保留以下 " + noin + "条匹配规则:" + "\n ⨁ " + nlist.join("\n ⨁ "), rule_link)
             }
@@ -1253,8 +1253,8 @@ function Filter(servers, Pin, Pout) {
             Nname.push(servers[i].replace(/ /g, "").split("tag=")[1])
         } else { Delist.push(servers[i].replace(/ /g, "").split("tag=")[1]) } //记录未被保留节点
     }//for
-    var no = Delist.length <= 10 ? emojino[Delist.length] : Delist.length;
-    var no1 = Nlist.length <= 10 ? emojino[Nlist.length] : Nlist.length;
+    var no = NumberNotify(Delist.length);
+    var no1 = NumberNotify(Nlist.length);
     if (Pntf0 == 1 && Delist.length >= 1) {//通知部分
         if (Pin && no1 > 0) { //有 in 参数就通知保留部分
             $notify("👥 引用" + "⟦" + subtag + "⟧" + " 开始节点筛选", "🕹 筛选关键字: " + pfi + pfo, "☠️ 已保留以下 " + no1 + "个节点\n" + Nname.join(", "), sub_link);
@@ -2677,9 +2677,9 @@ function NOT(array) {
 
 
 // ==================== RenameNumber =================
-function Order(number){
+function NumberNotify(number){
   if (number < 10){
       return emojino[number];
   }
-  return Order(Math.floor(number/10)) + emojino[(number % 10)]
+  return NumberNotify(Math.floor(number/10)) + emojino[(number % 10)]
 }
