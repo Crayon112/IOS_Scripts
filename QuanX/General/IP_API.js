@@ -27,7 +27,8 @@ var emoji = function (){
 	}
 	
 	return emojis[getRandomInt(emojis.length)];
-}
+}();
+
 
 if ($response.statusCode != 200) {
 	var title = flags.get('CN') + ' ' + city0 + emoji;
