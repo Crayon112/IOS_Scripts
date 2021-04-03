@@ -4,4 +4,4 @@
 ^https\:\/\/m\.jingxi\.com\/jxcfd\/consume\/CashOut url script-request-header https://raw.githubusercontent.com/whyour/hundun/master/quanx/jx_tokens.js
 
 # 京东合集
-https:\/\/api\.m\.jd\.com\/client\.action.*functionId=signBean url script-request-header https://raw.githubusercontent.com/Crayon112/IOS_Scripts/main/QuanX/Tasks/jd_sign.js
+https:\/\/api\.m\.jd\.com\/client\.action.*functionId=signBean url script-request-header https://raw.githubusercontent.com/Crayon112/CrossUtilityTools/main/QuanX/Tasks/jd_sign.js

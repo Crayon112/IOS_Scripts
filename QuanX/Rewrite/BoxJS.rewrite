@@ -1,0 +1,5 @@
+# 源自 @chavyleung
+# BoxJs 稳定版
+^https?://boxjs.com url script-analyze-echo-response https://raw.githubusercontent.com/Crayon112/CrossUtilityTools/main/QuanX/Backend/BoxJS.js
+# BoxJs 测试版
+^https?://boxjs.com url script-analyze-echo-response https://raw.githubusercontent.com/Crayon112/CrossUtilityTools/main/QuanX/Backend/BoxJSTF.js

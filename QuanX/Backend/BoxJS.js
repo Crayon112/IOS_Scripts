@@ -3,7 +3,7 @@ const $ = new Env('BoxJs')
 // 为 eval 准备的上下文环境
 const $eval_env = {}
 
-$.version = '0.7.84'
+$.version = '0.7.90'
 $.versionType = 'beta'
 
 // 发出的请求需要需要 Surge、QuanX 的 rewrite
@@ -23,8 +23,10 @@ $.KEY_sessions = 'chavy_boxjs_sessions'
 $.KEY_web_cache = 'chavy_boxjs_web_cache'
 // 存储`应用订阅缓存`
 $.KEY_app_subCaches = 'chavy_boxjs_app_subCaches'
-// 存储`全局备份`
+// 存储`全局备份` (弃用, 改用 `chavy_boxjs_backups`)
 $.KEY_globalBaks = 'chavy_boxjs_globalBaks'
+// 存储`备份索引`
+$.KEY_backups = 'chavy_boxjs_backups'
 // 存储`当前会话` (配合切换会话, 记录当前切换到哪个会话)
 $.KEY_cursessions = 'chavy_boxjs_cur_sessions'
 
@@ -44,7 +46,7 @@ $.html = $.name // `页面`类请求的响应体
 // 页面源码地址
 $.web = `https://cdn.jsdelivr.net/gh/chavyleung/scripts@${$.version}/box/chavy.boxjs.html?_=${new Date().getTime()}`
 // 版本说明地址 (Release Note)
-$.ver = `https://github.com/chavyleung/scripts/raw/master/box/release/box.release.tf.json`
+$.ver = `https://raw.githubusercontent.com/chavyleung/scripts/master/box/release/box.release.tf.json`
 
 !(async () => {
   // 勿扰模式
@@ -71,6 +73,8 @@ $.ver = `https://github.com/chavyleung/scripts/raw/master/box/release/box.releas
 
   // 升级用户数据
   upgradeUserData()
+  // 升级备份数据
+  upgradeGlobalBaks()
 
   // 处理预检请求
   if ($.isOptions) {
@@ -200,10 +204,17 @@ async function handleQuery() {
   if (/^\/boxdata/.test(query)) {
     $.json = getBoxData()
   } else if (/^\/baks/.test(query)) {
-    const globalbaks = getGlobalBaks(true)
-    $.json = { globalbaks }
+    const [, backupId] = query.split('/baks/')
+    $.json = $.getjson(backupId)
   } else if (/^\/versions$/.test(query)) {
     await getVersions(true)
+  } else if (/^\/data/.test(query)) {
+    // TODO 记录每次查询的 key 至 usercfgs.viewkeys
+    const [, dataKey] = query.split('/data/')
+    $.json = {
+      key: dataKey,
+      val: $.getdata(dataKey)
+    }
   }
 }
 
@@ -231,6 +242,8 @@ async function handleApi() {
     await apiRevertGlobalBak()
   } else if (api === '/runScript') {
     await apiRunScript()
+  } else if (api === '/saveData') {
+    await apiSaveData()
   }
 }
 
@@ -309,13 +322,13 @@ function getSystemApps() {
       settings: [
         { id: '@chavy_boxjs_userCfgs.httpapis', name: 'HTTP-API (Surge)', val: '', type: 'textarea', placeholder: ',examplekey@127.0.0.1:6166', autoGrow: true, rows: 2, persistentHint:true, desc: '示例: ,examplekey@127.0.0.1:6166! 注意: 以逗号开头, 逗号分隔多个地址, 可加回车' },
         { id: '@chavy_boxjs_userCfgs.httpapi_timeout', name: 'HTTP-API Timeout (Surge)', val: 20, type: 'number', persistentHint:true, desc: '如果脚本作者指定了超时时间, 会优先使用脚本指定的超时时间.' },
+        { id: '@chavy_boxjs_userCfgs.http_backend', name: 'HTTP Backend (Quantumult X)', val: '', type: 'text',placeholder: 'http://127.0.0.1:9999', persistentHint:true, desc: '示例: http://127.0.0.1:9999 ! 注意: 必须是以 http 开头的完整路径, 不能是 / 结尾' },
         { id: '@chavy_boxjs_userCfgs.bgimgs', name: '背景图片清单', val: '无,\n跟随系统,跟随系统\nlight,http://api.btstu.cn/sjbz/zsy.php\ndark,https://uploadbeta.com/api/pictures/random\n妹子,http://api.btstu.cn/sjbz/zsy.php', type: 'textarea', placeholder: '无,{回车} 跟随系统,跟随系统{回车} light,图片地址{回车} dark,图片地址{回车} 妹子,图片地址', persistentHint:true, autoGrow: true, rows: 2, desc: '逗号分隔名字和链接, 回车分隔多个地址' },
         { id: '@chavy_boxjs_userCfgs.bgimg', name: '背景图片', val: '', type: 'text', placeholder: 'http://api.btstu.cn/sjbz/zsy.php', persistentHint:true, desc: '输入背景图标的在线链接' },
         { id: '@chavy_boxjs_userCfgs.changeBgImgEnterDefault', name: '手势进入壁纸模式默认背景图片', val: '', type: 'text', placeholder: '填写上面背景图片清单的值', persistentHint:true, desc: '' },
         { id: '@chavy_boxjs_userCfgs.changeBgImgOutDefault', name: '手势退出壁纸模式默认背景图片', val: '', type: 'text', placeholder: '填写上面背景图片清单的值', persistentHint:true, desc: '' },
         { id: '@chavy_boxjs_userCfgs.color_light_primary', name: '明亮色调', canvas: true, val: '#F7BB0E', type: 'colorpicker', desc: '' },
-        { id: '@chavy_boxjs_userCfgs.color_dark_primary', name: '暗黑色调', canvas: true, val: '#2196F3', type: 'colorpicker', desc: '' },
-        { id: '@chavy_boxjs_userCfgs.http_backend', name: 'HTTP Backend (Quantumult X)', val: '', type: 'text',placeholder: 'http://127.0.0.1:9999', persistentHint:true, desc: '示例: http://127.0.0.1:9999 ! 注意: 必须是以 http 开头的完整路径, 不能是 / 结尾' },
+        { id: '@chavy_boxjs_userCfgs.color_dark_primary', name: '暗黑色调', canvas: true, val: '#2196F3', type: 'colorpicker', desc: '' }
       ],
       scripts: [
         {
@@ -375,6 +388,7 @@ function getUserCfgs() {
   const defcfgs = {
     favapps: [],
     appsubs: [],
+    viewkeys: [],
     isPinedSearchBar: true,
     httpapi: 'examplekey@127.0.0.1:6166',
     http_backend: ''
@@ -398,28 +412,20 @@ function getAppSubCaches() {
 }
 
 /**
- * 获取全局备份
- * 默认只获取备份的基础信息, 如: id, name……
- *
- * @param {boolean} isComplete 是否获取完整的备份数据
+ * 获取全局备份列表
  */
-function getGlobalBaks(isComplete = false) {
-  let globalbaks = $.getjson($.KEY_globalBaks, [])
+function getGlobalBaks() {
+  let backups = $.getjson($.KEY_backups, [])
 
   // 处理异常数据：删除所有为 null 的备份
-  if (globalbaks.includes(null)) {
-    globalbaks = globalbaks.filter((bak) => bak)
-    $.setjson(globalbaks, $.KEY_globalBaks)
+  if (backups.includes(null)) {
+    backups = backups.filter((bak) => bak)
+    $.setjson(backups, $.KEY_backups)
   }
 
-  if (isComplete) {
-    return globalbaks
-  } else {
-    // isComplete === false: 不返回备份体
-    globalbaks.forEach((bak) => delete bak.bak)
-    return globalbaks
-  }
+  return backups
 }
+
 /**
  * 获取版本清单
  */
@@ -515,32 +521,32 @@ async function apiReloadAppSub() {
 }
 
 async function apiDelGlobalBak() {
-  const bak = $.toObj($request.body)
-  const globalbaks = $.getjson($.KEY_globalBaks, [])
-  const bakIdx = globalbaks.findIndex((b) => b.id === bak.id)
+  const backup = $.toObj($request.body)
+  const backups = $.getjson($.KEY_backups, [])
+  const bakIdx = backups.findIndex((b) => b.id === backup.id)
   if (bakIdx > -1) {
-    globalbaks.splice(bakIdx, 1)
-    $.setjson(globalbaks, $.KEY_globalBaks)
+    backups.splice(bakIdx, 1)
+    $.setdata('', backup.id)
+    $.setjson(backups, $.KEY_backups)
   }
   $.json = getBoxData()
 }
 
 async function apiUpdateGlobalBak() {
-  const { id: bakId, name: bakName } = $.toObj($request.body)
-  const globalbaks = $.getjson($.KEY_globalBaks, [])
-  const bak = globalbaks.find((b) => b.id === bakId)
-  if (bak) {
-    bak.name = bakName
-    $.setjson(globalbaks, $.KEY_globalBaks)
+  const { id: backupId, name: backupName } = $.toObj($request.body)
+  const backups = $.getjson($.KEY_backups, [])
+  const backup = backups.find((b) => b.id === backupId)
+  if (backup) {
+    backup.name = backupName
+    $.setjson(backups, $.KEY_backups)
   }
-  $.json = { globalbaks }
+  $.json = getBoxData()
 }
 
 async function apiRevertGlobalBak() {
-  const { id: bakId } = $.toObj($request.body)
-  const globalbaks = $.getjson($.KEY_globalBaks, [])
-  const bak = globalbaks.find((b) => b.id === bakId)
-  if (bak && bak.bak) {
+  const { id: bakcupId } = $.toObj($request.body)
+  const backup = $.getjson(bakcupId)
+  if (backup) {
     const {
       chavy_boxjs_sysCfgs,
       chavy_boxjs_sysApps,
@@ -549,7 +555,7 @@ async function apiRevertGlobalBak() {
       chavy_boxjs_cur_sessions,
       chavy_boxjs_app_subCaches,
       ...datas
-    } = bak.bak
+    } = backup
     $.setdata(JSON.stringify(chavy_boxjs_sessions), $.KEY_sessions)
     $.setdata(JSON.stringify(chavy_boxjs_userCfgs), $.KEY_usercfgs)
     $.setdata(JSON.stringify(chavy_boxjs_cur_sessions), $.KEY_cursessions)
@@ -558,34 +564,34 @@ async function apiRevertGlobalBak() {
     Object.keys(datas).forEach((datkey) => $.setdata(isNull(datas[datkey]) ? '' : `${datas[datkey]}`, datkey))
   }
   const boxdata = getBoxData()
-  boxdata.globalbaks = globalbaks
   $.json = boxdata
 }
 
 async function apiSaveGlobalBak() {
-  let globalbaks = $.getjson($.KEY_globalBaks, [])
-  const bak = $.toObj($request.body)
-  const box = getBoxData()
-  const bakdata = {}
-  bakdata['chavy_boxjs_userCfgs'] = box.usercfgs
-  bakdata['chavy_boxjs_sessions'] = box.sessions
-  bakdata['chavy_boxjs_cur_sessions'] = box.curSessions
-  bakdata['chavy_boxjs_app_subCaches'] = box.appSubCaches
-  Object.assign(bakdata, box.datas)
-  bak.bak = bakdata
-  globalbaks.push(bak)
-  if (!$.setjson(globalbaks, $.KEY_globalBaks)) {
-    globalbaks = $.getjson($.KEY_globalBaks, [])
-  }
-  $.json = { globalbaks }
+  const backups = $.getjson($.KEY_backups, [])
+  const boxdata = getBoxData()
+  const backup = $.toObj($request.body)
+  const backupData = {}
+  backupData['chavy_boxjs_userCfgs'] = boxdata.usercfgs
+  backupData['chavy_boxjs_sessions'] = boxdata.sessions
+  backupData['chavy_boxjs_cur_sessions'] = boxdata.curSessions
+  backupData['chavy_boxjs_app_subCaches'] = boxdata.appSubCaches
+  Object.assign(backupData, boxdata.datas)
+  backups.push(backup)
+  $.setjson(backups, $.KEY_backups)
+  $.setjson(backupData, backup.id)
+  $.json = getBoxData()
 }
 
 async function apiImpGlobalBak() {
-  let globalbaks = $.getjson($.KEY_globalBaks, [])
-  const bak = $.toObj($request.body)
-  globalbaks.push(bak)
-  $.setjson(globalbaks, $.KEY_globalBaks)
-  $.json = { globalbaks }
+  const backups = $.getjson($.KEY_backups, [])
+  const backup = $.toObj($request.body)
+  const backupData = backup.bak
+  delete backup.bak
+  backups.push(backup)
+  $.setjson(backups, $.KEY_backups)
+  $.setjson(backupData, backup.id)
+  $.json = getBoxData()
 }
 
 async function apiRunScript() {
@@ -636,6 +642,15 @@ async function apiRunScript() {
       result: '',
       output: $.cached_logs.join('\n')
     }
+  }
+}
+
+async function apiSaveData() {
+  const { key: dataKey, val: dataVal } = $.toObj($request.body)
+  $.setdata(dataVal, dataKey)
+  $.json = {
+    key: dataKey,
+    val: $.getdata(dataKey)
   }
 }
 
@@ -695,6 +710,44 @@ function upgradeUserData() {
   if (isNeedUpgrade) {
     $.setjson(usercfgs, $.KEY_usercfgs)
   }
+}
+
+/**
+ * 升级备份数据
+ *
+ * 升级前: 把所有备份都存到一个持久化空间
+ * 升级后: 把每个备份都独立存到一个空间, `$.KEY_backups` 仅记录必要的数据索引
+ */
+function upgradeGlobalBaks() {
+  let oldbaks = $.getdata($.KEY_globalBaks)
+  let newbaks = $.getjson($.KEY_backups, [])
+  const isEmpty = (bak) => [undefined, null, ''].includes(bak)
+  const isExistsInNew = (backupId) => newbaks.find((bak) => bak.id === backupId)
+
+  // 存在旧备份数据时, 升级备份数据格式
+  if (!isEmpty(oldbaks)) {
+    oldbaks = JSON.parse(oldbaks)
+    oldbaks.forEach((bak) => {
+      if (isEmpty(bak)) return
+      if (isEmpty(bak.bak)) return
+      if (isExistsInNew(bak.id)) return
+
+      console.log(`正在迁移: ${bak.name}`)
+      const backupId = bak.id
+      const backupData = bak.bak
+
+      // 删除旧的备份数据, 仅保留索引信息
+      delete bak.bak
+      newbaks.push(bak)
+
+      // 提取旧备份数据, 存入独立的持久化空间
+      $.setjson(backupData, backupId)
+    })
+    $.setjson(newbaks, $.KEY_backups)
+  }
+
+  // 清空所有旧备份的数据
+  $.setdata('', $.KEY_globalBaks)
 }
 
 /**

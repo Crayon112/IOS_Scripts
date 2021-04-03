@@ -1,2 +1,2 @@
-;^https?:\/\/sub\.store url script-analyze-echo-response https://raw.githubusercontent.com/Peng-YM/Sub-Store/master/backend/sub-store.min.js
-^https?:\/\/sub\.store url script-analyze-echo-response https://raw.githubusercontent.com/Crayon112/IOS_Scripts/main/QuanX/Rewrite/Substore.rewrite.js
+; @Peng-YM
+^https?:\/\/sub\.store url script-analyze-echo-response https://raw.githubusercontent.com/Crayon112/CrossUtilityTools/main/QuanX/Rewrite/Substore.rewrite.js

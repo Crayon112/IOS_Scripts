@@ -1,11 +1,12 @@
 hostname = *.googlevideo.com, weather-data.apple.com, api.weather.com
 
-#新版YouTube去广告
+#新版YouTube去广告 @NobyDa
 ctier=[A-Z] url 302 ctier=A
 ^https://[\s\S]*\.googlevideo\.com/.*&(oad|ctier) url reject-200
 
-# 谷歌重定向
+# 谷歌重定向 @NobyDa
 ^(http|https):\/\/(www.)?(g|google)\.cn url 302 https://www.google.com
 
-# 彩云天气
-https:\/\/((weather-data\.apple)|(api.weather))\.com url script-request-header https://raw.githubusercontent.com/Peng-YM/QuanX/master/Tasks/caiyun.js
+# 彩云天气 @Peng-YM
+https:\/\/((weather-data\.apple)|(api.weather))\.com url script-request-header https://raw.githubusercontent.com/Crayon112/CrossUtilityTools/main/QuanX/Tasks/caiyun.js
+
