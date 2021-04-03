@@ -293,11 +293,11 @@
 			"config": "00 9 * * * https://raw.githubusercontent.com/Crayon112/CrossUtilityTools/main/QuanX/Tasks/boxjs_white.js, tag=BOXJS白屏, enabled=false"
 		},
 		{
-			"config": "00 9 * * * https://raw.githubusercontent.com/Crayon112/CrossUtilityTools/QuanX/Tasks/jd_sign.js, tag=京东多合一, enabled=true"
+			"config": "00 9 * * * https://raw.githubusercontent.com/Crayon112/CrossUtilityTools/main/QuanX/Tasks/jd_sign.js, tag=京东多合一, enabled=true"
 		}
 		,
 		{
-			"config": "0 12 * * * https://raw.githubusercontent.com/Crayon112/CrossUtilityTools/QuanX/Tasks/sync-substore.js, tag=Sync-Sub-Store, img-url=https://raw.githubusercontent.com/58xinian/icon/master/Sub-Store1.png, enabled=true"
+			"config": "0 12 * * * https://raw.githubusercontent.com/Crayon112/CrossUtilityTools/main/QuanX/Tasks/sync-substore.js, tag=Sync-Sub-Store, img-url=https://raw.githubusercontent.com/58xinian/icon/master/Sub-Store1.png, enabled=true"
 		}
 	],
 	"description": "Scripts Gallery"
