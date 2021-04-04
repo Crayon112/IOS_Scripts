@@ -1,7 +1,7 @@
 HOST,api.smoot.apple.cn,Apple
 HOST-SUFFIX,aaplimg.com,Apple
 HOST-SUFFIX,akadns.net,Apple
-HOST-SUFFIX-cloudkit.com,Apple
+HOST-SUFFIX,cloudkit.com,Apple
 HOST-SUFFIX-mapkit.com,Apple
 HOST-SUFFIX.co,Apple
 HOST-SUFFIX.com,Apple
