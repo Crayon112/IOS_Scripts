@@ -1,7 +1,7 @@
 HOST-SUFFIX,t.me,Telegram
 HOST-SUFFIX,tdesktop.com,Telegram
 HOST-SUFFIX,telegra.ph,Telegram
-HOST-SUFFIX.me,Telegram
+HOST-SUFFIX,me,Telegram
 HOST-SUFFIX.org,Telegram
 HOST-SUFFIX,telesco.pe,Telegram
 HOST-SUFFIX,tx.me,Telegram
